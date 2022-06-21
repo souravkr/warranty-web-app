@@ -71,34 +71,33 @@
                       
                       <tbody>
                       
+                      <c:forEach var="tempProduct" items="${products}" varStatus="status">
+                      
                         <tr class="alert" role="alert">
-                        
-          
-                            
+                                         
                           <td class="d-flex align-items-center">
-                              <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                              <div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/${imageName[status.index]}.jpg);"></div>
                               <div class="pl-3 email">
-                                  <span>Iphone 9</span>
+                                  <span>${tempProduct.name}</span>
                                   <span>Added: 01/03/2021</span>
                               </div>
                           </td>
                           
-                          <td>01/03/2021</td>
+                          <td>${tempProduct.purchaseDate}</td>
                           
-                          <td>12 Month</td>
+                          <td>${tempProduct.warrantyInMonth}</td>
                           
-                          <td>01/03/2023</td>
+                          <td>${expiryDate[status.index]}</td>
                           
-                           <td>Invoice Pdf</td>
+                           <td>Invoice Pdf</td>               
+                                                
+                       <!--    <td class="status"><span class="active">Active</span></td>     -->   
                           
-                          
-                          
-                          <td class="status"><span class="active">Active</span></td>
-                          
-                        
+                           <td class="status"><span class="waiting">Expired</span></td>                                  
                         
                         </tr>
                         
+                        </c:forEach>
                         
                       </tbody>
                     </table>

@@ -8302,10 +8302,10 @@ h1, h2, h3, h4, h5,
     .table tbody td.status .active:after {
       background: #23bd5a; }
   .table tbody td.status .waiting {
-    background: #fdf5dd;
-    color: #cfa00c; }
+    background: #fedcdc;
+    color: #fedcdc; }
     .table tbody td.status .waiting:after {
-      background: #f2be1d; }
+      background: #fedcdc; }
   .table tbody td .img {
     width: 50px;
     height: 50px;

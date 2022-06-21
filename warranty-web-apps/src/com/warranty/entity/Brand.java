@@ -20,17 +20,28 @@ public class Brand {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="year")
+	@Column(name="founded_year")
 	private String year;
 	
 	@Column(name="origin")
 	private String origin;
 	
-	@Column(name="service_ceneter")
+	@Column(name="service_centers")
 	private String serviceCeneter;
 	
 	@Column(name="toll_number")
 	private String tollNumber;
+
+	@Column(name="image_name")
+	private String imageName;
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
 	public int getBrandId() {
 		return brandId;

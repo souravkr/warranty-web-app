@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name="product")
 public class Product {
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name="brand_id")
 	private Brand productBrand;
 	
