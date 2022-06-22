@@ -1,5 +1,6 @@
 package com.warranty.util;
 
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 
+import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
 
 @Controller
@@ -54,6 +56,43 @@ public class CustomerUtil {
 		
 		
 		return expiryDate;
+	}
+
+	public List<Integer> getProductStatus(List<Date> expireyDate) {
+		
+		 List<Integer> status = new ArrayList<Integer>();
+		
+		 // 0 status means expired 1 means in warranty
+		 
+		for(Date expireDate : expireyDate ) {
+			
+			System.out.println("Expirty Date " + expireDate);
+			
+			if(expireDate.compareTo(new Date())<= -1 ) {
+				
+				System.out.println("Expired");
+				status.add(0);			
+			}
+			
+			else {status.add(1);
+			System.out.println("active");
+			}				
+		}		
+		return status;
+	}
+
+	public List<Brand> getBrandList(List<Product> productList) {
+		
+	   List<Brand> brand = new ArrayList<Brand>();
+		
+		for(Product temp : productList ) {
+			
+			brand.add(temp.getProductBrand());
+			
+		}
+		
+		
+		return brand;
 	}
 	
 	

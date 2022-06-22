@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
 
 
@@ -26,5 +27,28 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		return products;
 	}
+
+	@Override
+	public List<Brand> getBrandList() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		List<Brand> brands = session.createQuery("from Brand order by name", Brand.class).getResultList();
+		
+		return brands;
+	}
+
+	@Override
+	public void addProduct(Product product) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		
+		session.save(product);
+
+		
+	}
+	
+	
 
 }

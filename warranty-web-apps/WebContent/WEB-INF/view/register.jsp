@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 
 <!doctype html>
 <html lang="en">
@@ -53,36 +54,29 @@
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Register Your Product</h3>
 
-            <form class="px-md-2">
+
+
+ <%--            <form:form action="processForm2" modelAttribute="product" class="px-md-2" >
 
               <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" />
+                <form:input path ="name"  class="form-control"/>
                 <label class="form-label" for="form3Example1q">Name</label>
               </div>
 
               <div class="row">
                 <div class="col-md-6 mb-4">
-
-<div class="form-outline datepicker">
-<label for="birthday" class="form-label"  id="exampleDatepicker1">Purchased date</label>
-<input type="date" id="birthday" name="birthday">
-</div>
-
-
-           <!--        <div class="form-outline datepicker">
-                    <input type="text" class="form-control" id="exampleDatepicker1" />
-                    <label for="exampleDatepicker1" class="form-label">Purchased date</label>
-                  </div> -->
-
+                   <div class="form-outline datepicker">
+                     <label for="birthday" class="form-label" >Purchased date</label>
+                     <form:input type="date" path="purchaseDate"/>
+                    </div>
                 </div>
+                     
+                     
                 <div class="col-md-6 mb-4">
 
-                  <select class="select">
-                    <option value="1" disabled>Gender</option>
-                    <option value="2">Apple</option>
-                    <option value="3">Samsung</option>
-                    <option value="4">LG</option>
-                  </select>
+                  <form:select path="productBrand" class="select">
+                     <form:options  items="${brands}"/>                 
+                  </form:select>
 
                 </div>
               </div>
@@ -93,16 +87,27 @@
                 <div class="col-md-6">
 
                   <div class="form-outline">
-                    <input type="text" id="form3Example1w" class="form-control" />
-                    <label class="form-label" for="form3Example1w">Warranty Provided (In Month)</label>
+                     <form:input path="warrantyInMonth" class="form-control" />
+                     <label class="form-label" for="form3Example1w">Warranty Provided (In Months)</label>
                   </div>
 
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+             <input type="submit" value="Add Product"/>
 
-            </form>
+           </form:form> --%>
+           
+           
+           <form:form action="processForm" modelAttribute="product" method="GET">
+             <form:hidden path="id"/>
+       First Name <form:input path="name"/><br/>
+Date <form:input type="date" path="purchaseDate"/><br/>
+Month <form:input path="warrantyInMonth"/><br/>
+
+<input type="submit" value="Add Custmomer"/>
+
+</form:form>
 
           </div>
         </div>

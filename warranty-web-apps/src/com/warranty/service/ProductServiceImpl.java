@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.warranty.dao.ProductDAO;
+import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
 
 
@@ -21,6 +22,20 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProductList() {
 		
 		return productDao.getProductList();
+	}
+
+	@Override
+	@Transactional
+	public List<Brand> getBrandList() {
+		
+		return productDao.getBrandList();
+	}
+
+	@Override
+	@Transactional
+	public void addProduct(Product product) {
+		productDao.addProduct(product);
+		
 	}
 
 }

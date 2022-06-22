@@ -79,7 +79,7 @@
                               <div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/${imageName[status.index]}.jpg);"></div>
                               <div class="pl-3 email">
                                   <span>${tempProduct.name}</span>
-                                  <span>Added: 01/03/2021</span>
+                                  <span>${brand[status.index].name}</span>
                               </div>
                           </td>
                           
@@ -90,10 +90,22 @@
                           <td>${expiryDate[status.index]}</td>
                           
                            <td>Invoice Pdf</td>               
+                           
+                           <c:choose>
+                           
+                             <c:when test="${expirtyStatus[status.index] > 0}">
+                             
+                               <td class="status"><span class="active">Active</span></td> 
+                             </c:when>
+                            <c:otherwise>
+                                <td class="status"><span class="waiting">Expired</span></td>    
+                            </c:otherwise>
+                            
+                           </c:choose>
                                                 
                        <!--    <td class="status"><span class="active">Active</span></td>     -->   
                           
-                           <td class="status"><span class="waiting">Expired</span></td>                                  
+                                                        
                         
                         </tr>
                         
@@ -109,7 +121,7 @@
 
 
 
-<a href="#" class="float">
+<a href="${pageContext.request.contextPath}/product/showForm" class="float">
 <i class="fa fa-plus my-float"></i>
 </a>
 
