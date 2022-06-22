@@ -4,7 +4,9 @@ package com.warranty.entity;
 
 
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -36,7 +40,13 @@ public class Product {
     @Column(name="purchase_date")
     private Date purchaseDate;
 	
-    @Column(name="warranty_in_month")
+    @Override
+	public String toString() {
+		return "Product [productBrand=" + productBrand + ", id=" + id + ", name=" + name + ", purchaseDate="
+				+ purchaseDate + ", warrantyInMonth=" + warrantyInMonth + ", invoice=" + invoice + "]";
+	}
+
+	@Column(name="warranty_in_month")
 	private int warrantyInMonth;
 	
     @Column(name="invoice")

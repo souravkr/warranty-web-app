@@ -100,10 +100,23 @@
            
            
            <form:form action="processForm" modelAttribute="product" method="GET">
-             <form:hidden path="id"/>
+             
        First Name <form:input path="name"/><br/>
-Date <form:input type="date" path="purchaseDate"/><br/>
-Month <form:input path="warrantyInMonth"/><br/>
+       Date <form:input type="date" path="purchaseDate"/><br/> 
+       Month <form:input path="warrantyInMonth"/><br/>
+
+<%-- <form:select path="productBrand" class="select">
+  <form:options items="${brands}" itemLabel="${brands}"/>                 
+  </form:select>   --%>
+ 
+  
+  <form:select path="productBrand">
+   <c:forEach var="theUser" items="${brands}">
+        <form:option value="${br}" label="${theUser.name}"></form:option>
+    </c:forEach>
+    
+    </form:select>  
+
 
 <input type="submit" value="Add Custmomer"/>
 

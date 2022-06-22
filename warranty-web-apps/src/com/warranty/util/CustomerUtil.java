@@ -1,10 +1,9 @@
 package com.warranty.util;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -35,13 +34,11 @@ public class CustomerUtil {
 		
 		for(Product temp : productList ) {
 			
-			Date purchasedDate = temp.getPurchaseDate();
+			Date purchasedDate =  temp.getPurchaseDate();
 			
 			System.out.println("purchased date = " + purchasedDate );
 			
-			LocalDate localDate = purchasedDate.toInstant()
-				      .atZone(ZoneId.systemDefault())
-				      .toLocalDate();
+			LocalDate localDate = purchasedDate.toLocalDate();
 			
 			System.out.println("warranty to be addded = " + temp.getWarrantyInMonth());
 			
@@ -68,7 +65,7 @@ public class CustomerUtil {
 			
 			System.out.println("Expirty Date " + expireDate);
 			
-			if(expireDate.compareTo(new Date())<= -1 ) {
+			if(1 > System.currentTimeMillis()) {
 				
 				System.out.println("Expired");
 				status.add(0);			

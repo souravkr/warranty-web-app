@@ -1,6 +1,7 @@
   package com.warranty.controller;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
@@ -61,22 +61,35 @@ public class ProductController {
 		
 		Product product = new Product();
 		
-		List<Brand> brands = productservice.getBrandList();
+		List<Brand> brandsList = productservice.getBrandList();
 		
-		System.out.println(brands);
-		
-		model.addAttribute("brands",brands);
+		System.out.println(brandsList);	
 		
 		model.addAttribute("product", product);
+		
+		model.addAttribute("br", new Brand());
+		
+	    model.addAttribute("brands",brandsList);
 		
 		return "register";
 	}
 	
-	@RequestMapping(value = "/processForm", method = RequestMethod.GET)
-	public String processForm(@ModelAttribute Product product) {
+	/*
+	 * @GetMapping("/addCustomer") public String addCustomer(Model model) { Customer
+	 * customer = new Customer(); model.addAttribute("customer",customer); return
+	 * "customer-form"; }
+	 */
+	
+	//, @ModelAttribute("brands") Brand brand
+	
+	@GetMapping(value = "/processForm")
+	public String processForm(@ModelAttribute("product") Product product) {
 		//customerService.addCustomer(customer);
-		System.out.println("add success");
+		System.out.println("------------add success-----------");
 		//System.out.println(customer);
+		
+		//System.out.println(brand);
+		System.out.println("productus  = " + product);
 		
 		return "redirect:/product/productList";
 		
