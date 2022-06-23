@@ -45,4 +45,18 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getBrandById(bid);
 	}
 
+	@Override
+	@Transactional
+	public Product getProductById(int id) {
+		
+		return productDao.getProductByid(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteProductById(int id) {
+		productDao.deletProductByid(id);
+		
+	}
+
 }

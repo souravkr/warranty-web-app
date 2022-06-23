@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
@@ -64,6 +65,7 @@
                             <th>Expires On</th>
                             <th>Invoice</th>
                             <th>Status</th>
+                           <th>&nbsp;</th>
                             
                         </tr>
                         
@@ -104,7 +106,61 @@
                            </c:choose>
                                                 
                        <!--    <td class="status"><span class="active">Active</span></td>     -->   
-                          
+                       
+                       
+                       <c:url var="updateURL" value="/product/updateProduct">
+                       
+                        <c:param name="id" value="${tempProduct.id}"/>
+                       
+                       </c:url>
+                       
+                       <c:url var="deleteURL" value="/product/deleteProduct">
+                       
+                        <c:param name="id" value="${tempProduct.id}"/>
+                       
+                       </c:url>
+
+                             
+                             <td><a href="${updateURL}">Update </a> | <a href="${deleteURL}" onclick="return confirm('Are you sure You want to delete the Product?')">Delete</a></td>
+        
+     
+        
+<!--         <div class="header">
+
+  three dot menu
+  <div class="dropdown">
+    three dots
+    <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+      <li></li>
+    </ul>
+    menu
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#home">Delete</a>
+      <a href="#about">Update	</a>
+    </div>
+  </div>
+
+</div>
+         -->
+        
+        
+        
+        
+        
+                             
+        <!--                      <menu>
+                 <li><button onclick="copy()">Copy</button></li>
+                <li><button onclick="cut()">Cut</button></li>
+              <li><button onclick="paste()">Paste</button></li>
+                    </menu> -->
+                             
+                      <!--        <select name="cars" id="cars">
+                               <option value="delete" label="Delete"></option>
+                                <option value="delete" label="Delete"></option>
+                             </select> -->
+                          <!--    </td> -->
+                             
+                         <!--  <td><div class="test"></div></td>  --> 
                                                         
                         
                         </tr>
@@ -161,6 +217,7 @@
   <script src="${pageContext.request.contextPath}/resources/javascript/popper.js"></script>
   <script src="${pageContext.request.contextPath}/resources/javascript/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/javascript/main.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/javascript/menu.js"></script>
     
 
 

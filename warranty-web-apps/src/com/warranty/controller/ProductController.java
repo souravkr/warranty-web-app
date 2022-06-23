@@ -68,9 +68,11 @@ public class ProductController {
 		
 		model.addAttribute("product", product);
 		
-		int i = 0;
-		
-		model.addAttribute("br",i );
+		/*
+		 * int i = 0;
+		 * 
+		 * model.addAttribute("br",i );
+		 */
 		
 	    model.addAttribute("brands",brandsList);
 		
@@ -100,6 +102,33 @@ public class ProductController {
 		
 		return "redirect:/product/productList";
 		
+	}
+	
+	
+	@GetMapping(value= "/updateProduct")
+	public String updateProduct(Model model, @RequestParam("id") int id) {
+		
+		
+	   List<Brand> brandsList = productservice.getBrandList();
+		
+		System.out.println(brandsList);	
+		
+		Product product = productservice.getProductById(id);
+		
+		model.addAttribute("product", product);
+		
+	    model.addAttribute("brands",brandsList);
+		
+		return "register";
+	}
+	
+	@GetMapping(value="/deleteProduct")
+	public String deleteProductById(@RequestParam int id) {
+		
+		
+		productservice.deleteProductById(id);
+		
+		return "redirect:/product/productList";
 	}
 	
 	

@@ -15,4 +15,8 @@ public interface ProductService {
 
 	public Brand getBrandById(int bid);
 
+	public Product getProductById(int id);
+
+	public void deleteProductById(int id);
+
 }

@@ -56,7 +56,7 @@
 
 
 
- <%--            <form:form action="processForm2" modelAttribute="product" class="px-md-2" >
+          <form:form action="processForm" modelAttribute="product" method="GET" class="px-md-2" >
 
               <div class="form-outline mb-4">
                 <form:input path ="name"  class="form-control"/>
@@ -66,17 +66,24 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                    <div class="form-outline datepicker">
+                     
+                     <form:input type="date" path="purchaseDate" class="form-control"/>
                      <label for="birthday" class="form-label" >Purchased date</label>
-                     <form:input type="date" path="purchaseDate"/>
                     </div>
                 </div>
                      
                      
                 <div class="col-md-6 mb-4">
 
-                  <form:select path="productBrand" class="select">
-                     <form:options  items="${brands}"/>                 
-                  </form:select>
+                
+               <form:select path="bid" class="form-control">
+                
+                 <c:forEach var="theUser" items="${brands}">
+                   <form:option value="${theUser.brandId}" label="${theUser.name}"></form:option>
+                 </c:forEach>
+               </form:select>
+               <label class="form-label" for="form3Example1w" >Product Brand</label>
+                  
 
                 </div>
               </div>
@@ -87,41 +94,41 @@
                 <div class="col-md-6">
 
                   <div class="form-outline">
+                   
                      <form:input path="warrantyInMonth" class="form-control" />
-                     <label class="form-label" for="form3Example1w">Warranty Provided (In Months)</label>
+                     <label class="form-label" for="form3Example1w">Warranty In Months</label>
+                    
                   </div>
 
                 </div>
               </div>
+              
+              <!-- HTML !-->
+            <!-- <input type="submit" class="button-29" role="button">Add Product</button> -->
+ 
+              <input type="submit" class="button-29" value="Add Product"/>
 
-             <input type="submit" value="Add Product"/>
-
-           </form:form> --%>
+           </form:form> 
            
            
-           <form:form action="processForm" modelAttribute="product" method="GET">
+      <%--      <form:form action="processForm" modelAttribute="product" method="GET"> --%>
              
-       First Name <form:input path="name"/><br/>
+<%--        First Name <form:input path="name"/><br/>
        Date <form:input type="date" path="purchaseDate"/><br/> 
        Month <form:input path="warrantyInMonth"/><br/>
-
-<%-- <form:select path="productBrand" class="select">
-  <form:options items="${brands}" itemLabel="${brands}"/>                 
-  </form:select>   --%>
- 
   
  
  <form:select path="bid">
    <c:forEach var="theUser" items="${brands}">
         <form:option value="${theUser.brandId}" label="${theUser.name}"></form:option>
     </c:forEach>
-        </form:select>  
+        </form:select>   --%>
         
 
-<input type="submit" value="Add Product"/>
+<%-- <input type="submit" value="Add Product"/>
 
 </form:form>
-
+ --%>
 
     
 
@@ -138,7 +145,3 @@
 
 
 </body>
-
-
-
-<%-- <% response.sendRedirect("customer/list"); %> --%>
