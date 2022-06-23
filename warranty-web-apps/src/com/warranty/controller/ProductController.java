@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
@@ -67,7 +68,9 @@ public class ProductController {
 		
 		model.addAttribute("product", product);
 		
-		model.addAttribute("br", new Brand());
+		int i = 0;
+		
+		model.addAttribute("br",i );
 		
 	    model.addAttribute("brands",brandsList);
 		
@@ -84,11 +87,15 @@ public class ProductController {
 	
 	@GetMapping(value = "/processForm")
 	public String processForm(@ModelAttribute("product") Product product) {
-		//customerService.addCustomer(customer);
-		System.out.println("------------add success-----------");
-		//System.out.println(customer);
 		
-		//System.out.println(brand);
+		Brand brand = productservice.getBrandById(product.getBid());
+		System.out.println("Brand to store is  " + brand);
+		
+		product.setProductBrand(brand);
+		productservice.addProduct(product);
+		
+		System.out.println("------------add success-----------");
+		
 		System.out.println("productus  = " + product);
 		
 		return "redirect:/product/productList";

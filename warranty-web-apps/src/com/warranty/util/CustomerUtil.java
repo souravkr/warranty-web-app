@@ -65,14 +65,14 @@ public class CustomerUtil {
 			
 			System.out.println("Expirty Date " + expireDate);
 			
-			if(1 > System.currentTimeMillis()) {
+			if(expireDate.after(new Date(System.currentTimeMillis() ) ) )  {
 				
-				System.out.println("Expired");
-				status.add(0);			
+				System.out.println("active");
+				status.add(1);			
 			}
 			
-			else {status.add(1);
-			System.out.println("active");
+			else {status.add(0);
+			System.out.println("Expired ");
 			}				
 		}		
 		return status;

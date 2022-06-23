@@ -38,4 +38,11 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	@Transactional
+	public Brand getBrandById(int bid) {
+		// TODO Auto-generated method stub
+		return productDao.getBrandById(bid);
+	}
+
 }

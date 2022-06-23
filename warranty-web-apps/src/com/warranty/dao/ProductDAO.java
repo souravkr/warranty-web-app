@@ -12,5 +12,7 @@ public interface ProductDAO {
 	public List<Brand> getBrandList();
 
 	public void addProduct(Product product);
+
+	public Brand getBrandById(int id);
 	
 }

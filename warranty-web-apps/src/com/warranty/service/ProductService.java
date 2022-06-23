@@ -13,4 +13,6 @@ public interface ProductService {
 
 	public void addProduct(Product product);
 
+	public Brand getBrandById(int bid);
+
 }

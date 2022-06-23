@@ -110,17 +110,21 @@
   </form:select>   --%>
  
   
-  <form:select path="productBrand">
+ 
+ <form:select path="bid">
    <c:forEach var="theUser" items="${brands}">
-        <form:option value="${br}" label="${theUser.name}"></form:option>
+        <form:option value="${theUser.brandId}" label="${theUser.name}"></form:option>
     </c:forEach>
-    
-    </form:select>  
+        </form:select>  
+        
 
-
-<input type="submit" value="Add Custmomer"/>
+<input type="submit" value="Add Product"/>
 
 </form:form>
+
+
+    
+
 
           </div>
         </div>

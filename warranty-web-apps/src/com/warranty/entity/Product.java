@@ -16,8 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 
@@ -40,10 +39,12 @@ public class Product {
     @Column(name="purchase_date")
     private Date purchaseDate;
 	
-    @Override
+
+
+	@Override
 	public String toString() {
 		return "Product [productBrand=" + productBrand + ", id=" + id + ", name=" + name + ", purchaseDate="
-				+ purchaseDate + ", warrantyInMonth=" + warrantyInMonth + ", invoice=" + invoice + "]";
+				+ purchaseDate + ", warrantyInMonth=" + warrantyInMonth + ", invoice=" + invoice + ", bid=" + bid + "]";
 	}
 
 	@Column(name="warranty_in_month")
@@ -111,7 +112,16 @@ public class Product {
 	
 	public Product() {}
 	
-    
+	@Transient 
+    private int bid;
+
+	public int getBid() {
+		return bid;
+	}
+
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
     
 
 }

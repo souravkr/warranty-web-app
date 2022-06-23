@@ -48,6 +48,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 		
 	}
+
+	@Override
+	public Brand getBrandById(int id) {
+	
+		Session session = sessionFactory.getCurrentSession();
+		
+		return session.get(Brand.class, id);
+		
+	}
 	
 	
 
