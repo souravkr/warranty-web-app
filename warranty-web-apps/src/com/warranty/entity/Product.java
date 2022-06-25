@@ -1,11 +1,4 @@
 package com.warranty.entity;
-
-
-
-
-
-
-
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -17,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 
 
@@ -34,9 +30,12 @@ public class Product {
 	private int id;
 	
     @Column(name="name")
+    @NotNull(message="Name is required")
+    @Size(min=1, max=20,message="Name should be min of length 1 and max of 20")
 	private String name;
 	
     @Column(name="purchase_date")
+    @PastOrPresent
     private Date purchaseDate;
 	
 
@@ -48,7 +47,8 @@ public class Product {
 	}
 
 	@Column(name="warranty_in_month")
-	private int warrantyInMonth;
+	@NotNull(message="Warrany could not be Blank")
+	private Integer warrantyInMonth;
 	
     @Column(name="invoice")
     private String invoice;
@@ -85,11 +85,11 @@ public class Product {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public int getWarrantyInMonth() {
+	public Integer getWarrantyInMonth() {
 		return warrantyInMonth;
 	}
 
-	public void setWarrantyInMonth(int warrantyInMonth) {
+	public void setWarrantyInMonth(Integer warrantyInMonth) {
 		this.warrantyInMonth = warrantyInMonth;
 	}
 

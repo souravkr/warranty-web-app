@@ -20,7 +20,7 @@
 
  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>   
  <script src="https://kit.fontawesome.com/a86ed0bb07.js" crossorigin="anonymous"></script>
-    <title>Warranty App</title>
+    <title>Warranty Tracker</title>
   </head>
   
   
@@ -33,11 +33,11 @@
             
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item active"><a href="${pageContext.request.contextPath}/product/productList" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+                   <!--  <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li> -->
                 </ul>
-            </div>
+            </div>	
         </div>
     </nav>
     </header>
@@ -49,7 +49,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Registered Product</h2>
+             <header>
+                <h4>Registered Products</h4>
+                 </header>
             </div>
         </div>
         <div class="row">
@@ -91,7 +93,32 @@
                           
                           <td>${expiryDate[status.index]}</td>
                           
-                         <td><a href= "${pageContext.request.contextPath}/Invoices/${tempProduct.invoice}" target="_blank">Invoice Pdf</a></td>               
+                           
+
+<!-- <script>
+const time = tempProduct;
+
+if (time === null) {
+  greeting = "No Invoice Uploaded ";
+} else  {
+  greeting = "<td><a href= "${pageContext.request.contextPath}/Invoices/${tempProduct.invoice}" target="_blank">View Invoice/Bill</a></td>";
+} 
+document.getElementById("demo").innerHTML = greeting;
+</script> -->
+                          
+                          
+                        <%--  <td><a href= "${pageContext.request.contextPath}/Invoices/${tempProduct.invoice}" target="_blank">View Invoice/Bill</a></td>       --%>
+                   
+            <c:choose>
+              <c:when test="${empty tempProduct.invoice}">
+                  <td>No Invoice</td>
+              </c:when>
+              <c:otherwise>
+                   <td><a href= "${pageContext.request.contextPath}/Invoices/${tempProduct.invoice}" target="_blank">View Invoice/Bill</a></td>
+              </c:otherwise>
+           </c:choose>
+                                   
+                                    
                            
                            <c:choose>
                            
@@ -186,18 +213,30 @@
 
   <footer class="text-center text-lg-start" style="background-color: #edf2f4	;">
     <div class="container d-flex justify-content-center py-5">
+  <!--   <a href="https://www.youtube.com">
       <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
         <i class="fab fa-facebook-f"></i>
       </button>
+     </a> -->
+      
+     <!-- <a href="https://www.youtube.com" target="_blank"> 
       <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
         <i class="fab fa-youtube"></i>
       </button>
+      </a>
+       -->
+      <a href="https://www.instagram.com/souravkix" target="_blank">
       <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
         <i class="fab fa-instagram"></i>
       </button>
+      </a>
+      
+      <a href="https://www.twitter.com/souravk229" target="_blank">
       <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
         <i class="fab fa-twitter"></i>
       </button>
+      </a>
+      
     </div>
 
     <!-- Copyright -->
