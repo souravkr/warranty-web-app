@@ -1,16 +1,28 @@
   package com.warranty.controller;
 
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
@@ -21,6 +33,8 @@ import com.warranty.util.CustomerUtil;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+	
+	private static final String UPLOAD_DIRECTORY ="/images"; 
 	
 	@Autowired
 	ProductService productservice;
@@ -68,11 +82,6 @@ public class ProductController {
 		
 		model.addAttribute("product", product);
 		
-		/*
-		 * int i = 0;
-		 * 
-		 * model.addAttribute("br",i );
-		 */
 		
 	    model.addAttribute("brands",brandsList);
 		
@@ -87,18 +96,22 @@ public class ProductController {
 	
 	//, @ModelAttribute("brands") Brand brand
 	
-	@GetMapping(value = "/processForm")
-	public String processForm(@ModelAttribute("product") Product product) {
+	@PostMapping(value = "/processForm")
+	public String processForm(@ModelAttribute("product") Product product , @RequestParam CommonsMultipartFile file, HttpSession session) throws Exception {
 		
+        String filename = customerUtil.getUniqueFileName(file);
+			
 		Brand brand = productservice.getBrandById(product.getBid());
-		System.out.println("Brand to store is  " + brand);
 		
 		product.setProductBrand(brand);
+		product.setInvoice(filename);		
+		
 		productservice.addProduct(product);
 		
 		System.out.println("------------add success-----------");
 		
-		System.out.println("productus  = " + product);
+		
+		productservice.writeFile(file, session, filename);  
 		
 		return "redirect:/product/productList";
 		
@@ -132,14 +145,6 @@ public class ProductController {
 	}
 	
 	
-	/*
-	 * @GetMapping("/processForm") public String processForm(@ModelAttribute Product
-	 * product) { System.out.println("Inside process from");
-	 * 
-	 * productservice.addProduct(product); System.out.println("add success");
-	 * System.out.println(product);
-	 * 
-	 * return "redirect:/product/productList"; }
-	 */
+	
 	
 }

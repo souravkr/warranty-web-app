@@ -56,7 +56,7 @@
 
 
 
-          <form:form action="processForm" modelAttribute="product" method="GET" class="px-md-2" >
+          <form:form action="processForm" modelAttribute="product" class="px-md-2"  method="POST" enctype="multipart/form-data" >
 
               <div class="form-outline mb-4">
                 <form:input path ="name"  class="form-control"/>
@@ -105,10 +105,24 @@
               
               <!-- HTML !-->
             <!-- <input type="submit" class="button-29" role="button">Add Product</button> -->
+            
+             Upload Invoice : <input type="file" name="file"/>
+        
+             
+             <br><br>
  
               <input type="submit" class="button-29" value="Add Product"/>
+              
+             
 
-           </form:form> 
+           </form:form>
+           
+        <%--    <form action="submitInvoice" method="POST" enctype="multipart/form-data">
+             Upload Invice : <input type="file" name="file"/>
+             <input type="submit" value="upload File"/>
+           
+           
+           </form>  --%>
            
            
       <%--      <form:form action="processForm" modelAttribute="product" method="GET"> --%>

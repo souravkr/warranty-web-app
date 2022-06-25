@@ -91,7 +91,7 @@
                           
                           <td>${expiryDate[status.index]}</td>
                           
-                           <td>Invoice Pdf</td>               
+                         <td><a href= "${pageContext.request.contextPath}/Invoices/${tempProduct.invoice}" target="_blank">Invoice Pdf</a></td>               
                            
                            <c:choose>
                            

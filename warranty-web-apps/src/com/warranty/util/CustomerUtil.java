@@ -5,8 +5,10 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
@@ -91,6 +93,14 @@ public class CustomerUtil {
 		
 		return brand;
 	}
+	
+	public String getUniqueFileName(CommonsMultipartFile file) {
+		UUID uuid=UUID.randomUUID();
+		
+		String filename = uuid.toString() + "." + file.getContentType().split("/")[1];
+		return filename;
+	}
+
 	
 	
 	
