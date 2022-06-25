@@ -1,19 +1,20 @@
 package com.warranty.util;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
 
 @Controller
-public class CustomerUtil {
+public class ProductUtil {
 
 	public List<String> getImageURL(List<Product> productList) {
 
@@ -23,9 +24,7 @@ public class CustomerUtil {
 			
 			url.add(temp.getProductBrand().getImageName());
 			
-		}
-		
-		
+		}	
 		return url;
 	}
 
@@ -35,13 +34,11 @@ public class CustomerUtil {
 		
 		for(Product temp : productList ) {
 			
-			Date purchasedDate = temp.getPurchaseDate();
+			Date purchasedDate =  temp.getPurchaseDate();
 			
 			System.out.println("purchased date = " + purchasedDate );
 			
-			LocalDate localDate = purchasedDate.toInstant()
-				      .atZone(ZoneId.systemDefault())
-				      .toLocalDate();
+			LocalDate localDate = purchasedDate.toLocalDate();
 			
 			System.out.println("warranty to be addded = " + temp.getWarrantyInMonth());
 			
@@ -52,9 +49,7 @@ public class CustomerUtil {
 			expiryDate.add(java.sql.Date.valueOf(localDate));
 			
 		}
-		
-		
-		
+			
 		return expiryDate;
 	}
 
@@ -68,14 +63,14 @@ public class CustomerUtil {
 			
 			System.out.println("Expirty Date " + expireDate);
 			
-			if(expireDate.compareTo(new Date())<= -1 ) {
+			if(expireDate.after(new Date(System.currentTimeMillis() ) ) )  {
 				
-				System.out.println("Expired");
-				status.add(0);			
+				System.out.println("active");
+				status.add(1);			
 			}
 			
-			else {status.add(1);
-			System.out.println("active");
+			else {status.add(0);
+			System.out.println("Expired ");
 			}				
 		}		
 		return status;
@@ -95,8 +90,13 @@ public class CustomerUtil {
 		return brand;
 	}
 	
-	
-	
+	public String getUniqueFileName(CommonsMultipartFile file) {
+		UUID uuid=UUID.randomUUID();
+		
+		String filename = uuid.toString() + "." + file.getContentType().split("/")[1];
+		return filename;
+	}
+
 	
 
 }

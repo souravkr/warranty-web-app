@@ -1,10 +1,5 @@
 package com.warranty.entity;
-
-
-
-
-
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 
 
@@ -31,13 +30,26 @@ public class Product {
 	private int id;
 	
     @Column(name="name")
+    @NotNull(message="Name is required")
+    @Size(min=1, max=20,message="Name should be min of length 1 and max of 20")
 	private String name;
 	
     @Column(name="purchase_date")
+    @PastOrPresent
     private Date purchaseDate;
 	
-    @Column(name="warranty_in_month")
-	private int warrantyInMonth;
+    @Transient 
+    private int bid;
+
+	@Override
+	public String toString() {
+		return "Product [productBrand=" + productBrand + ", id=" + id + ", name=" + name + ", purchaseDate="
+				+ purchaseDate + ", warrantyInMonth=" + warrantyInMonth + ", invoice=" + invoice + ", bid=" + bid + "]";
+	}
+
+	@Column(name="warranty_in_month")
+	@NotNull(message="Warrany could not be Blank")
+	private Integer warrantyInMonth;
 	
     @Column(name="invoice")
     private String invoice;
@@ -74,11 +86,11 @@ public class Product {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public int getWarrantyInMonth() {
+	public Integer getWarrantyInMonth() {
 		return warrantyInMonth;
 	}
 
-	public void setWarrantyInMonth(int warrantyInMonth) {
+	public void setWarrantyInMonth(Integer warrantyInMonth) {
 		this.warrantyInMonth = warrantyInMonth;
 	}
 
@@ -101,7 +113,15 @@ public class Product {
 	
 	public Product() {}
 	
-    
+	
+
+	public int getBid() {
+		return bid;
+	}
+
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
     
 
 }
