@@ -14,7 +14,7 @@ import com.warranty.entity.Brand;
 import com.warranty.entity.Product;
 
 @Controller
-public class CustomerUtil {
+public class ProductUtil {
 
 	public List<String> getImageURL(List<Product> productList) {
 
@@ -24,9 +24,7 @@ public class CustomerUtil {
 			
 			url.add(temp.getProductBrand().getImageName());
 			
-		}
-		
-		
+		}	
 		return url;
 	}
 
@@ -51,9 +49,7 @@ public class CustomerUtil {
 			expiryDate.add(java.sql.Date.valueOf(localDate));
 			
 		}
-		
-		
-		
+			
 		return expiryDate;
 	}
 
@@ -101,9 +97,6 @@ public class CustomerUtil {
 		return filename;
 	}
 
-	
-	
-	
 	
 
 }

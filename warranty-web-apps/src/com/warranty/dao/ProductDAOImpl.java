@@ -73,10 +73,7 @@ public class ProductDAOImpl implements ProductDAO {
 		Product product = session.get(Product.class, id);
 		
 		session.delete(product);
-		
-		/*
-		 * session.createQuery("delete from Product where id ="+ id).executeUpdate();
-		 */		
+			
 		
 	}
 	

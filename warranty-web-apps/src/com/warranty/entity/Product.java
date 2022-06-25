@@ -38,7 +38,8 @@ public class Product {
     @PastOrPresent
     private Date purchaseDate;
 	
-
+    @Transient 
+    private int bid;
 
 	@Override
 	public String toString() {
@@ -112,8 +113,7 @@ public class Product {
 	
 	public Product() {}
 	
-	@Transient 
-    private int bid;
+	
 
 	public int getBid() {
 		return bid;
